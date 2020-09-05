@@ -1,31 +1,34 @@
 require('babel-register')
-var devConfig = require('../../../config/webpack.dev.config')
+const address = {
+  port: 2000,
+  host: '127.0.0.1'
+}
 
 // http://nightwatchjs.org/gettingstarted#settings-file
 module.exports = {
-  src_folders: ['example/test/e2e/specs'],
-  output_folder: 'example/test/e2e/reports',
+  address,
+  src_folders: ['e2e-test/specs'],
+  output_folder: 'e2e-test/reports',
   test_workers: true,
 
   selenium: {
     start_process: true,
     server_path: require('selenium-server').path,
-    host: '127.0.0.1',
+    host: address.host,
     port: 4444,
     cli_args: {
-      'webdriver.chrome.driver': require('chromedriver').path,
+      'webdriver.chrome.driver': require('chromedriver').path
       // 'webdriver.gecko.driver': require('geckodriver').path,
-    },
+    }
   },
 
   test_settings: {
     default: {
       selenium_port: 4444,
-      selenium_host: 'localhost',
+      selenium_host: address.host,
       silent: true,
       globals: {
-        devServerURL:
-          'http://localhost:' + (process.env.PORT || devConfig.devServer.port),
+        devServerURL: `http://${address.host}:${address.port}`,
 
         // it does not work !!!
         // abortOnAssertionFailure: true,
@@ -41,8 +44,8 @@ module.exports = {
             process.exit(1)
           }
           cb()
-        },
-      },
+        }
+      }
     },
 
     chrome: {
@@ -52,9 +55,9 @@ module.exports = {
         acceptSslCerts: true,
         chromeOptions: {
           w3c: false,
-          args: ['headless'],
-        },
-      },
+          args: ['headless']
+        }
+      }
     },
 
     firefox: {
@@ -63,9 +66,9 @@ module.exports = {
         javascriptEnabled: true,
         acceptSslCerts: true,
         'moz:firefoxOptions': {
-          args: ['--headless'],
-        },
-      },
-    },
-  },
+          args: ['--headless']
+        }
+      }
+    }
+  }
 }

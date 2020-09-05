@@ -1,17 +1,17 @@
 const webpack = require('webpack')
 const DevServer = require('webpack-dev-server')
 
-const devConfig = require('../../../config/webpack.dev.config')
+const devConfig = require('../build/webpack.dev')
+const { address } = require('./nightwatch.conf')
 
-const devServerOptions = devConfig.devServer
 const compiler = webpack(devConfig)
-const server = new DevServer(compiler, devServerOptions)
-const port = devServerOptions.port
-const host = devServerOptions.host
+const server = new DevServer(compiler, {
+  host: address.host,
+  port: address.port
+})
 
-console.log('server listen on:', port, host)
-server.listen(port, host, () => {
-  // 2. run the nightwatch test suite against it
+console.log('server listen on:', address)
+server.listen(address.port, address.host, () => {
   // to run in additional browsers:
   //    1. add an entry in test/e2e/nightwatch.conf.js under "test_settings"
   //    2. add it to the --env flag below
@@ -19,24 +19,22 @@ server.listen(port, host, () => {
   // For more information on Nightwatch's config file, see
   // http://nightwatchjs.org/guide#settings-file
   let opts = process.argv.slice(2)
-  if (opts.indexOf('--config') === -1) {
-    opts = opts.concat(['--config', 'example/test/e2e/nightwatch.conf.js'])
-  }
+  opts = opts.concat(['--config', 'e2e-test/nightwatch.conf.js'])
   if (opts.indexOf('--env') === -1) {
     opts = opts.concat(['--env', 'chrome'])
   }
 
   const spawn = require('cross-spawn')
   const runner = spawn('./node_modules/.bin/nightwatch', opts, {
-    stdio: 'inherit',
+    stdio: 'inherit'
   })
 
-  runner.on('exit', function(code) {
+  runner.on('exit', function (code) {
     server.close()
     process.exit(code)
   })
 
-  runner.on('error', function(err) {
+  runner.on('error', function (err) {
     server.close()
     throw err
   })
