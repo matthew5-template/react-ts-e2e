@@ -15,7 +15,8 @@
     // Import non-ES modules as default imports.
     "esModuleInterop": true,
     "jsx": "react",
-    "module": "esnext"
+    "module": "esnext",
+    "noImplicitAny": false
   },
   "include": ["src"]
 }
