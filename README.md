@@ -16,6 +16,10 @@
   1. 开发环境 `yarn start`, port 默认 2000， 配置在`build/webpack.dev.js`
   2. 打包环境 `yarn build`, `yarn run:build`，port 默认 3000
 
-- 运行 test `yarn test`
+- 运行 test `yarn test` 默认使用 chrome 或 `yarn test --env firefox`
 
   运行前到`e2e-test/nightwatch.conf.js`中修改要测试的 app 首页地址`appUrl`
+
+### Nightwatch guide
+
+https://nightwatchjs.org/guide/

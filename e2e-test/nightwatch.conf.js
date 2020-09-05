@@ -17,8 +17,8 @@ module.exports = {
     host: address.seleniumHost,
     port: address.seleniumPort,
     cli_args: {
-      'webdriver.chrome.driver': require('chromedriver').path
-      // 'webdriver.gecko.driver': require('geckodriver').path,
+      'webdriver.chrome.driver': require('chromedriver').path,
+      'webdriver.gecko.driver': require('geckodriver').path
     }
   },
 

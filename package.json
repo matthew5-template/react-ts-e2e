@@ -8,17 +8,24 @@
   "scripts": {
     "start": "webpack-dev-server --config build/webpack.dev.js",
     "build": "rimraf dist && webpack --config build/webpack.prod.js",
-    "check-types": "tsc --watch"
+    "run:build": "live-server ./dist --port=3000",
+    "check-types": "tsc --watch",
+    "test": "node e2e-test/runner.js"
   },
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.11.5",
     "@thebund1st/smsv-react": "^1.0.0",
     "axios": "^0.20.0",
+    "babel-register": "^6.26.0",
+    "chromedriver": "^85.0.0",
+    "geckodriver": "^1.20.0",
+    "nightwatch": "^1.4.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router": "^5.2.0",
     "react-router-config": "^5.1.1",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "selenium-server": "^3.141.59"
   },
   "devDependencies": {
     "@babel/core": "^7.11.0",
@@ -33,6 +40,7 @@
     "css-loader": "^4.1.1",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
+    "live-server": "^1.2.1",
     "mini-css-extract-plugin": "^0.11.0",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.7.0",
