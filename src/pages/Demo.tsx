@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as smsv from '@thebund1st/smsv-react'
-import './index.scss'
+import './Demo.scss'
 
 import { Icon } from 'antd'
 
@@ -14,7 +14,7 @@ type Props = {
 
 type State = {}
 
-export class DefaultDemo extends React.Component<Props, State> {
+export class Demo extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props)
     this.state = {}

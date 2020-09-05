@@ -1,23 +1,9 @@
 import * as React from 'react'
 import './App.scss'
-import { Button } from 'antd'
-import { DefaultDemo } from './DefaultDemo'
-import { CostaDemo } from './CostaDemo'
-import * as authApi from '../apis/auth'
-type Props = {}
+import { Demo } from './Demo'
+// import * as authApi from '../apis/auth'
 
-type State = {
-  demoType: string
-}
-
-class App extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props)
-  }
-  state: State = {
-    demoType: 'demo'
-  }
-
+class App extends React.Component {
   validPhoneNumber(phoneNumber: string) {
     if (phoneNumber.length != 11) {
       return '手机号码位数不正确'
@@ -65,58 +51,15 @@ class App extends React.Component<Props, State> {
     //   return ''
     // }
   }
-  handleDemoChange = (e) => {
-    this.setState(
-      {
-        demoType: e.target.value
-      },
-      () => {
-        this.renderDemo()
-      }
-    )
-  }
-  renderDemo = () => {
-    const { demoType } = this.state
-    switch (demoType) {
-      case 'demo':
-        return (
-          <DefaultDemo
-            onFetchCode={this.onFetchCode}
-            onVerifyCode={this.onVerifyCode}
-          />
-        )
-      case 'costa-demo':
-        return (
-          <CostaDemo
-            onFetchCode={this.onFetchCode}
-            onVerifyCode={this.onVerifyCode}
-          />
-        )
-    }
-  }
 
   render() {
-    const { demoType } = this.state
     return (
       <>
         <div className="container">
-          <div className="demo-list-controler">
-            <Button
-              type={demoType === 'demo' ? 'primary' : 'default'}
-              value="demo"
-              onClick={this.handleDemoChange}
-            >
-              demo
-            </Button>
-            <Button
-              type={demoType === 'costa-demo' ? 'primary' : 'default'}
-              value="costa-demo"
-              onClick={this.handleDemoChange}
-            >
-              costa-demo
-            </Button>
-          </div>
-          <div className="demo-container">{this.renderDemo()}</div>
+          <Demo
+            onFetchCode={this.onFetchCode}
+            onVerifyCode={this.onVerifyCode}
+          />
         </div>
       </>
     )
