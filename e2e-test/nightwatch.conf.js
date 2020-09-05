@@ -1,12 +1,12 @@
 require('babel-register')
 const address = {
-  port: 2000,
-  host: '127.0.0.1'
+  appUrl: 'http://localhost:2000',
+  seleniumHost: '127.0.0.1',
+  seleniumPort: 4444
 }
 
 // http://nightwatchjs.org/gettingstarted#settings-file
 module.exports = {
-  address,
   src_folders: ['e2e-test/specs'],
   output_folder: 'e2e-test/reports',
   test_workers: true,
@@ -14,8 +14,8 @@ module.exports = {
   selenium: {
     start_process: true,
     server_path: require('selenium-server').path,
-    host: address.host,
-    port: 4444,
+    host: address.seleniumHost,
+    port: address.seleniumPort,
     cli_args: {
       'webdriver.chrome.driver': require('chromedriver').path
       // 'webdriver.gecko.driver': require('geckodriver').path,
@@ -24,11 +24,11 @@ module.exports = {
 
   test_settings: {
     default: {
-      selenium_port: 4444,
-      selenium_host: address.host,
+      selenium_port: address.seleniumPort,
+      selenium_host: address.seleniumHost,
       silent: true,
       globals: {
-        devServerURL: `http://${address.host}:${address.port}`,
+        devServerURL: address.appUrl,
 
         // it does not work !!!
         // abortOnAssertionFailure: true,
