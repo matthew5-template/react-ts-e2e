@@ -1,9 +1,9 @@
 // For authoring Nightwatch tests, see
 // http://nightwatchjs.org/guide#usage
-const { smsv_selector, smsv_validPhone } = require('../utils/variable')
+const { smsv_selector, smsv_validPhone } = require('../variable')
 
 module.exports = {
-  'happy pass': function(browser) {
+  'happy pass': function (browser) {
     const devServer = browser.globals.devServerURL
 
     let result = browser
@@ -18,20 +18,24 @@ module.exports = {
       .click(smsv_selector.fetchCodeBtn)
       .setValue(smsv_selector.codeInput, smsv_validPhone.code)
 
-    result.elements('css selector', smsv_selector.agreementPretext, preText => {
-      preText.value.forEach(x => {
-        result.elementIdClick(x.ELEMENT)
-      })
+    result.elements(
+      'css selector',
+      smsv_selector.agreementPretext,
+      (preText) => {
+        preText.value.forEach((x) => {
+          result.elementIdClick(x.ELEMENT)
+        })
 
-      // check verify btn enable
-      result.expect.element(smsv_selector.verifyBtn).to.be.enabled
+        // check verify btn enable
+        result.expect.element(smsv_selector.verifyBtn).to.be.enabled
 
-      result
-        .click(smsv_selector.verifyBtn)
-        // check error message area
-        .expect.element(smsv_selector.errorMsgContainer).to.not.be.present
+        result
+          .click(smsv_selector.verifyBtn)
+          // check error message area
+          .expect.element(smsv_selector.errorMsgContainer).to.not.be.present
 
-      result.end()
-    })
-  },
+        result.end()
+      }
+    )
+  }
 }

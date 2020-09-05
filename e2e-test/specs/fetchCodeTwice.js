@@ -4,11 +4,11 @@ const {
   smsv_selector,
   smsv_validPhone,
   smsv_validPhone2,
-  smsv_tooManyRequest,
-} = require('../utils/variable')
+  smsv_tooManyRequest
+} = require('../variable')
 
 module.exports = {
-  'waiting 5s for the countdown': function(browser) {
+  'waiting 5s for the countdown': function (browser) {
     const devServer = browser.globals.devServerURL
 
     let result = browser
@@ -23,7 +23,7 @@ module.exports = {
       .enabled
     result.end()
   },
-  'change phone while waiting for the countdown': function(browser) {
+  'change phone while waiting for the countdown': function (browser) {
     const devServer = browser.globals.devServerURL
 
     let result = browser
@@ -43,7 +43,7 @@ module.exports = {
 
     result.end()
   },
-  'fetch code too many request by server': function(browser) {
+  'fetch code too many request by server': function (browser) {
     const devServer = browser.globals.devServerURL
 
     let result = browser
@@ -57,5 +57,5 @@ module.exports = {
       .waitForElementVisible(smsv_selector.errorMsgContainer, 500)
 
     result.end()
-  },
+  }
 }

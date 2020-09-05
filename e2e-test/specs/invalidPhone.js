@@ -1,9 +1,9 @@
 // For authoring Nightwatch tests, see
 // http://nightwatchjs.org/guide#usage
-const { smsv_selector, smsv_invalidPhone } = require('../utils/variable')
+const { smsv_selector, smsv_invalidPhone } = require('../variable')
 
 module.exports = {
-  'invalid phone format': function(browser) {
+  'invalid phone format': function (browser) {
     const devServer = browser.globals.devServerURL
 
     let result = browser
@@ -22,7 +22,7 @@ module.exports = {
 
     result.end()
   },
-  'unregister phone': function(browser) {
+  'unregister phone': function (browser) {
     const devServer = browser.globals.devServerURL
 
     let result = browser
@@ -41,5 +41,5 @@ module.exports = {
     result.waitForElementVisible(smsv_selector.errorMsgContainer, 500)
 
     result.end()
-  },
+  }
 }
