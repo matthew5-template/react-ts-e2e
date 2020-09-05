@@ -3,8 +3,7 @@
 const {
   smsv_selector,
   smsv_validPhone,
-  smsv_validPhone2,
-  smsv_tooManyRequest
+  smsv_validPhone2
 } = require('../variable')
 
 module.exports = {
@@ -42,20 +41,20 @@ module.exports = {
       .expect.element(smsv_selector.fetchCodeBtn).to.not.be.enabled
 
     result.end()
-  },
-  'fetch code too many request by server': function (browser) {
-    const devServer = browser.globals.devServerURL
-
-    let result = browser
-      .url(devServer)
-      .waitForElementVisible('#app', 2000)
-      .setValue(smsv_selector.phoneInput, smsv_tooManyRequest.number)
-      .click(smsv_selector.fetchCodeBtn)
-
-    result
-      .click(smsv_selector.fetchCodeBtn)
-      .waitForElementVisible(smsv_selector.errorMsgContainer, 500)
-
-    result.end()
   }
+  // 'fetch code too many request by server': function (browser) {
+  //   const devServer = browser.globals.devServerURL
+
+  //   let result = browser
+  //     .url(devServer)
+  //     .waitForElementVisible('#app', 2000)
+  //     .setValue(smsv_selector.phoneInput, smsv_tooManyRequest.number)
+  //     .click(smsv_selector.fetchCodeBtn)
+
+  //   result
+  //     .click(smsv_selector.fetchCodeBtn)
+  //     .waitForElementVisible(smsv_selector.errorMsgContainer, 500)
+
+  //   result.end()
+  // }
 }

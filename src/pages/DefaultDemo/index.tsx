@@ -5,8 +5,11 @@ import './index.scss'
 import { Icon } from 'antd'
 
 type Props = {
-  onFetchCode: any
-  onVerifyCode: any
+  onFetchCode: (phoneNumber: string) => Promise<string>
+  onVerifyCode: (params: {
+    phoneNumber: string
+    code: string
+  }) => Promise<string>
 }
 
 type State = {}
