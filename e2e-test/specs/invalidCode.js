@@ -12,7 +12,7 @@ module.exports = {
 
     let result = browser
       .url(devServer)
-      .waitForElementVisible('#root', 2000)
+      .waitForElementVisible('#app', 2000)
       .setValue(smsv_selector.codeInput, '1234567')
       .setValue(smsv_selector.phoneInput, smsv_validPhone.number)
 
@@ -41,7 +41,7 @@ module.exports = {
 
     let result = browser
       .url(devServer)
-      .waitForElementVisible('#root', 2000)
+      .waitForElementVisible('#app', 2000)
       .setValue(smsv_selector.phoneInput, smsv_invalidCode.number)
 
     // check fetch code btn enable

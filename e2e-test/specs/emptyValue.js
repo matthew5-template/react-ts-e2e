@@ -8,7 +8,7 @@ module.exports = {
 
     let result = browser
       .url(devServer)
-      .waitForElementVisible('#root', 2000)
+      .waitForElementVisible('#app', 2000)
       .click(smsv_selector.phoneInput)
       .setValue(smsv_selector.codeInput, smsv_validPhone.code)
 
@@ -26,7 +26,7 @@ module.exports = {
 
     let result = browser
       .url(devServer)
-      .waitForElementVisible('#root', 2000)
+      .waitForElementVisible('#app', 2000)
       .click(smsv_selector.codeInput)
       .setValue(smsv_selector.phoneInput, smsv_validPhone.number)
 
